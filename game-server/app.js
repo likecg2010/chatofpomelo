@@ -8,13 +8,23 @@ app.set('name', 'chatofpomelo');
 
 
 // app configure
-app.configure('production|development', function() {
+app.configure('production|development', function() 
+	{
+
+	 app.set('connectorConfig',
+        {
+            connector : pomelo.connectors.hybridconnector,
+            heartbeat : 30
+        });
+
 	// route configures
 	app.route('chat', routeUtil.chat);
 
 	// filter configures
 	app.filter(pomelo.timeout());
-});
+}
+
+);
 
 // start app
 app.start();
